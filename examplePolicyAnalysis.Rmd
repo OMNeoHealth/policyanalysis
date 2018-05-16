@@ -1,0 +1,31 @@
+---
+title: "OMNeoHealth Policy Analysis"
+date: "16/05/2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Conceptual overview of proposed OMNeoHealth policy analysis approach using content analysis
+
+
+
+## Examples of how to use this approach
+
+For this example we will use the text data of Papua New Guinea's Alotau Accord of 2014 available in the `papuanewguinea` data package of the OMNeoHealth GitHub project.
+
+First, install the `papuanewguinea` data package:
+
+```{r, eval = TRUE}
+#
+# Install devtools package in R (allows for installation of packages from GitHub)
+#
+install.packages("devtools")
+#
+# Install papuanewguinea data package in R via GitHub
+#
+install.github("OMNeoHealth/papuranewguinea")
+```
+
