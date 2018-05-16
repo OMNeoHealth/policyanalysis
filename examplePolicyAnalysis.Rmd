@@ -1,5 +1,6 @@
 ---
 title: "Introduction to the use of R for applying content/sentiment anlaysis for OMNeoHealth's policy analysis component"
+Author: "Ernest Guevarra"
 date: "16/05/2018"
 output:
   pdf_document:
@@ -22,13 +23,7 @@ library(dplyr)
 library(tidytext)
 ```
 
-## Conceptual overview of proposed OMNeoHealth policy analysis approach using content analysis
-
-
-
-## Examples of how to use this approach
-
-For this example we will use the text data of Papua New Guinea's Alotau Accord of 2014 available in the `papuanewguinea` data package of the OMNeoHealth GitHub project.
+For this note we will use the text data of Papua New Guinea's Alotau Accord of 2014 available in the `papuanewguinea` data package of the OMNeoHealth GitHub project.
 
 First, install the `papuanewguinea` data package:
 
@@ -48,10 +43,12 @@ devtools::install_github("OMNeoHealth/papuanewguinea")
 
 Once installed, the Alotau Accord of 2014 is now available for us to use. the object name for the text data is `alotau_accord_2014`
 
-You can examine the data by simply typing in the name of the data in R:
+You can examine the data by simply typing in the name of the data in R. In the code snippet below, I use a function from the `dplyr` package called `as_tibble()` which prints out the dataframe in a `tibble` format. A tibble is a modern class of data frame within R, available in the dplyr and tibble packages, that has a convenient print method, will not convert strings to factors, and does not use row names. I use it here for convenience and to make the printing of the dataframe tidier. To use `as_tibble`, we need to install and load the `dplyr` package first and then view the dataframe as tibble:
 
 &nbsp;
 ```{r, eval = TRUE}
+# install.packages("dplyr")
+library(dplyr)
 as_tibble(papuanewguinea::alotau_accord_2014)
 ```
 &nbsp;
@@ -90,6 +87,9 @@ The `alotauDF` data object is now a dataframe of all the words in the actual Alo
 Given such a data structure, we can now potentially perform various types of analysis based on the word content of the accord. This analysis should be guided by the research questions that need to be answered by the project.
 
 The example above treats the policy document as a collection of words. Depending on the research question/s, you may want to tokenise the policy document/s into sentences, paragraphs, n-grams (collection of consecutive words) on which you can perform various types of analysis.
+
+
+## Further reading
 
 I would recommend the book ***Text Mining with R*** as our main reference guide for doing the content/sentiment analysis in R. It is available to read online as an online book at https://www.tidytextmining.com.
 

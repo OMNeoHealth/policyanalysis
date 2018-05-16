@@ -126,16 +126,7 @@ OMNeoHealth's policy analysis component}
 \begin{document}
 \maketitle
 
-\hypertarget{conceptual-overview-of-proposed-omneohealth-policy-analysis-approach-using-content-analysis}{%
-\subsection{Conceptual overview of proposed OMNeoHealth policy analysis
-approach using content
-analysis}\label{conceptual-overview-of-proposed-omneohealth-policy-analysis-approach-using-content-analysis}}
-
-\hypertarget{examples-of-how-to-use-this-approach}{%
-\subsection{Examples of how to use this
-approach}\label{examples-of-how-to-use-this-approach}}
-
-For this example we will use the text data of Papua New Guinea's Alotau
+For this note we will use the text data of Papua New Guinea's Alotau
 Accord of 2014 available in the \texttt{papuanewguinea} data package of
 the OMNeoHealth GitHub project.
 
@@ -162,12 +153,23 @@ First, install the \texttt{papuanewguinea} data package:
 Once installed, the Alotau Accord of 2014 is now available for us to
 use. the object name for the text data is \texttt{alotau\_accord\_2014}
 
-You can examine the data by simply typing in the name of the data in R:
+You can examine the data by simply typing in the name of the data in R.
+In the code snippet below, I use a function from the \texttt{dplyr}
+package called \texttt{as\_tibble()} which prints out the dataframe in a
+\texttt{tibble} format. A tibble is a modern class of data frame within
+R, available in the dplyr and tibble packages, that has a convenient
+print method, will not convert strings to factors, and does not use row
+names. I use it here for convenience and to make the printing of the
+dataframe tidier. To use \texttt{as\_tibble}, we need to install and
+load the \texttt{dplyr} package first and then view the dataframe as
+tibble:
 
 ~
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# install.packages("dplyr")}
+\KeywordTok{library}\NormalTok{(dplyr)}
 \KeywordTok{as_tibble}\NormalTok{(papuanewguinea}\OperatorTok{::}\NormalTok{alotau_accord_}\DecValTok{2014}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -271,6 +273,9 @@ The example above treats the policy document as a collection of words.
 Depending on the research question/s, you may want to tokenise the
 policy document/s into sentences, paragraphs, n-grams (collection of
 consecutive words) on which you can perform various types of analysis.
+
+\hypertarget{further-reading}{%
+\subsection{Further reading}\label{further-reading}}
 
 I would recommend the book \textbf{\emph{Text Mining with R}} as our
 main reference guide for doing the content/sentiment analysis in R. It
