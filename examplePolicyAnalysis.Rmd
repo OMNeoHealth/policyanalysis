@@ -1,11 +1,25 @@
 ---
-title: "OMNeoHealth Policy Analysis"
+title: "Introduction to the use of R for applying content/sentiment anlaysis for OMNeoHealth's policy analysis component"
 date: "16/05/2018"
-output: pdf_document
+output:
+  pdf_document:
+    highlight: tango
+    keep_tex: yes
+    latex_engine: xelatex
+header_includes: 
+  \usepackage{float} 
+  \usepackage{setspace} 
+  \onehalfspacing
+fontsize: 11pt
+geometry: margin=2cm
+classoption: a4paper
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+devtools::install_github("OMNeoHealth/papuanewguinea")
+library(dplyr)
+library(tidytext)
 ```
 
 ## Conceptual overview of proposed OMNeoHealth policy analysis approach using content analysis
@@ -18,14 +32,74 @@ For this example we will use the text data of Papua New Guinea's Alotau Accord o
 
 First, install the `papuanewguinea` data package:
 
-```{r, eval = TRUE}
+&nbsp;
+```{r, eval = FALSE}
 #
-# Install devtools package in R (allows for installation of packages from GitHub)
+# Install devtools package in R 
+# (allows for installation of packages from GitHub)
 #
 install.packages("devtools")
 #
 # Install papuanewguinea data package in R via GitHub
 #
-install.github("OMNeoHealth/papuranewguinea")
+devtools::install_github("OMNeoHealth/papuanewguinea")
 ```
+&nbsp;
+
+Once installed, the Alotau Accord of 2014 is now available for us to use. the object name for the text data is `alotau_accord_2014`
+
+You can examine the data by simply typing in the name of the data in R:
+
+&nbsp;
+```{r, eval = TRUE}
+as_tibble(papuanewguinea::alotau_accord_2014)
+```
+&nbsp;
+
+You will notice that the `alotau_accord_2014` dataset is structured as a dataframe with each row corresponding to each of the lines of text in the actual Alotau Accord of 2014 document.
+
+To be able to work with this text data further using content analysis or sentiment analysis, we need to `tokenise` the dataset. This means we need to break up the text data into `tokens` - a meaningful unit of text, most often a word, that we are interested in using for further analysis. To do this, we will use the `tidytext` package. Install and load the package in R by issuing the following commands:
+
+&nbsp;
+```{r, eval = FALSE}
+install.packages("tidytext")
+library(tidytext)
+```
+&nbsp;
+
+The `tidytext` package has the `unnest_tokens()` function that basically tokenises the dataset. This can be applied to the `alotau_accord_2014` dataset as follows:
+
+&nbsp;
+```{r, eval = TRUE}
+alotauDF <- unnest_tokens(tbl = papuanewguinea::alotau_accord_2014,
+                          output = word, 
+                          input = text)
+```
+&nbsp;
+
+Let's now examine what the resulting `alotauDF` data object looks like:
+
+&nbsp;
+```{r, eval = TRUE}
+as_tibble(alotauDF)
+```
+&nbsp;
+
+The `alotauDF` data object is now a dataframe of all the words in the actual Alotau Accord of 2014.
+
+Given such a data structure, we can now potentially perform various types of analysis based on the word content of the accord. This analysis should be guided by the research questions that need to be answered by the project.
+
+The example above treats the policy document as a collection of words. Depending on the research question/s, you may want to tokenise the policy document/s into sentences, paragraphs, n-grams (collection of consecutive words) on which you can perform various types of analysis.
+
+I would recommend the book ***Text Mining with R*** as our main reference guide for doing the content/sentiment analysis in R. It is available to read online as an online book at https://www.tidytextmining.com.
+
+
+
+
+
+
+
+
+
+
 
